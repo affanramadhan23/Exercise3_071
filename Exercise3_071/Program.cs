@@ -16,9 +16,34 @@ namespace Exercise_Linked_List_D
     class CircularList
     {
         node LAST;
+        node START;
         public CircularList()
         {
             LAST = null;
+            START = null;
+        }
+        public void  InsertNode()
+        {
+            int nim;
+            string nm;
+            Console.Write("\nEnter The student identity number : ");
+            nim = Convert.ToInt32(Console.ReadLine());
+            Console.Write("\nEnter the name of the student : ");
+            nm = Console.ReadLine();
+            node newnode = new node();
+            newnode.rollNumber = nim;
+            newnode.name = nm;
+            if (START == null || nim <= START.rollNumber)
+            {
+                if ((START != null) && (nim == START.rollNumber))
+                {
+                    Console.WriteLine("\nDuplicate roll numbers not allowed\n");
+                    return;
+                }
+                newnode.next = START;
+                START = newnode;
+                return;
+            }
         }
         public bool Search(int rollNo, ref node previous, ref node current)
         /*Searches for the specified node*/
