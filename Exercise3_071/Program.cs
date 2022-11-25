@@ -16,11 +16,9 @@ namespace Exercise_Linked_List_D
     class CircularList
     {
         node LAST;
-        node START;
         public CircularList()
         {
             LAST = null;
-            START = null;
         }
         public void  InsertNode()
         {
@@ -33,22 +31,22 @@ namespace Exercise_Linked_List_D
             node newnode = new node();
             newnode.rollNumber = nim;
             newnode.name = nm;
-            if (START == null || nim <= START.rollNumber)
+            if (LAST == null || nim <= LAST.rollNumber)
             {
-                if ((START != null) && (nim == START.rollNumber))
+                if ((LAST != null) && (nim == LAST.rollNumber))
                 {
                     Console.WriteLine("\nDuplicate roll numbers not allowed\n");
                     return;
                 }
-                newnode.next = START;
-                START = newnode;
+                newnode.next = LAST;
+                LAST = newnode;
                 return;
             }
 
             //Locate the postion of the new node in the list
             node previous, current;
-            previous = START;
-            current = START;
+            previous = LAST;
+            current = LAST;
 
             while ((current != null) && (nim >= current.rollNumber))
             {
@@ -92,8 +90,8 @@ namespace Exercise_Linked_List_D
             if (Search(nim, ref previous, ref current) == false)
                 return false;
             previous.next = current.next;
-            if (current == START)
-                START = START.next;
+            if (current == LAST)
+                LAST = LAST.next;
             return true;
         }
         public void traverse() //Traverse all the nodes of the list
