@@ -84,6 +84,18 @@ namespace Exercise_Linked_List_D
             else
                 return false;
         }
+        public bool delNode(int nim)
+        {
+            node previous, current;
+            previous = current = null;
+            //check if the specified node is present in the list or not
+            if (Search(nim, ref previous, ref current) == false)
+                return false;
+            previous.next = current.next;
+            if (current == START)
+                START = START.next;
+            return true;
+        }
         public void traverse() //Traverse all the nodes of the list
         {
             if (listEmpty())
