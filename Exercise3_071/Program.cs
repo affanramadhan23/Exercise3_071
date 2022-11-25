@@ -44,6 +44,25 @@ namespace Exercise_Linked_List_D
                 START = newnode;
                 return;
             }
+
+            //Locate the postion of the new node in the list
+            node previous, current;
+            previous = START;
+            current = START;
+
+            while ((current != null) && (nim >= current.rollNumber))
+            {
+                if(nim == current.rollNumber)
+                {
+                    Console.WriteLine("\nDuplicate roll numbers not allowed\n");
+                    return;
+                }
+                previous = current;
+                current = current.next;
+            }
+            //*once the above for loop is executed, prev and current are positioned in such a manner that the position for the new node *//
+            newnode = current;
+            previous.next = newnode;
         }
         public bool Search(int rollNo, ref node previous, ref node current)
         /*Searches for the specified node*/
